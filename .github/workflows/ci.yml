@@ -38,6 +38,11 @@ jobs:
           # `nest` (build step) and `next/server` from the example installs.
           (cd examples/nestjs && npm ci)
           (cd examples/nextjs && npm ci)
+          # The islands suites load the real worker modules in-process —
+          # leaflet/recharts/htmlparser2 live in the example's lockfile, and
+          # without them worker-module imports never resolve and every mount
+          # await hangs into the 30s test timeout.
+          (cd examples/react-dom-worker && npm ci)
 
       - name: Typecheck — core SDK + app sources
         run: npx tsc --noEmit
@@ -45,7 +50,7 @@ jobs:
       - name: Typecheck — publishable packages
         run: |
           set -e
-          for pkg in react vue solidjs svelte angular nextjs node nestjs incidents; do
+          for pkg in react vue solidjs svelte angular nextjs node nestjs incidents worker-dom react-island; do
             echo "--- packages/$pkg"
             npx tsc -p "packages/$pkg/tsconfig.json"
           done

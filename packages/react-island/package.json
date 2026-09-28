@@ -1,0 +1,25 @@
+{
+  "name": "@jwhenry123/mesh-react-island",
+  "version": "0.1.0",
+  "description": "React shell components for mesh-worker-dom islands — <Island/>, islandComponent, lazyIsland",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@jwhenry123/mesh": "0.1.0",
+    "@jwhenry123/mesh-worker-dom": "0.1.0",
+    "react": "^19.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jwhenry3/mesh",
+    "directory": "packages/react-island"
+  }
+}

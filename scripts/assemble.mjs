@@ -18,6 +18,9 @@ const mounts = [
   ['solid', 'examples/solid/dist'],
   ['svelte', 'examples/svelte/dist'],
   ['angular', 'examples/angular/dist/incidents-angular/browser'],
+  // Multi-page build: dist holds index.html (framework-free shell) AND
+  // react-shell.html (React + <Island/> proxies) side by side.
+  ['react-dom-worker', 'examples/react-dom-worker/dist'],
 ];
 
 if (!existsSync(join(root, 'dist/index.html'))) {

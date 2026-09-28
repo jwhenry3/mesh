@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Worker Islands — React shell</title>
+    <!--
+      Same islands as index.html, but the SHELL itself is a React app
+      (src/shell.tsx): each island-root is an <Island/> component from
+      @jwhenry123/mesh-react-island. Op replay is identical — only the
+      mounting style differs.
+    -->
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; background: #101418; color: #e6edf3; }
+      #root { max-width: 960px; margin: 0 auto; padding: 24px; }
+      button, input { font: inherit; }
+      input { padding: 6px 10px; background: #1c2330; color: inherit; border: 1px solid #303845; border-radius: 6px; }
+      button { padding: 6px 12px; background: #2d6cdf; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+      button:hover { background: #3d7bef; }
+      table { border-collapse: collapse; width: 100%; }
+      td, th { padding: 3px 8px; border-bottom: 1px solid #262d38; text-align: left; }
+      /* shell chrome */
+      #transport-bar {
+        display: flex; gap: 16px; align-items: center; font: 12px monospace; color: #9aa4b2;
+        padding: 8px 12px; border: 1px solid #2a3340; border-radius: 6px; margin-bottom: 12px;
+      }
+      #status-line { font: 12px monospace; color: #7fb6ff; margin-bottom: 12px; min-height: 1em; }
+      .island { border: 1px solid #2a3340; border-radius: 8px; margin-bottom: 14px; overflow: hidden; }
+      .island-head {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 6px 12px; background: #161c26; border-bottom: 1px solid #2a3340;
+        font: 12px monospace; color: #9aa4b2;
+      }
+      .island-head .badge {
+        padding: 1px 8px; border-radius: 8px; background: #1f4d2e; color: #a9e5c3; font-weight: 700;
+      }
+      .island-root { padding: 8px 12px; }
+      .island-root table { max-height: 360px; }
+      #island-table, #island-table-2 { max-height: 380px; overflow-y: auto; display: block; }
+      /* the vanilla island's content is entirely worker-created via the
+         proxy DOM — these rules are shell-side styling of op-applied DOM */
+      .vanilla-heading, .vanilla-readout { margin: 4px 0 8px; font-size: 13px; color: #9aa4b2; }
+      .vanilla-readout { color: #e6edf3; }
+      .swatch { border: 1px solid #303845; border-radius: 4px; padding: 0; background: none; }
+      .swatch.active { outline: 2px solid #e6edf3; outline-offset: 1px; }
+      .vanilla-log { margin-top: 8px; font: 11px/1.7 monospace; color: #7d8a9c; }
+      .vanilla-log-line { border-left: 2px solid #2a3340; padding-left: 8px; }
+      /* the vendored MiniWidget — markup built via innerHTML inside the
+         worker shim; these rules are shell-side styling of op-applied DOM */
+      .mini-widget { margin-top: 12px; border-top: 1px dashed #2a3340; padding-top: 10px; }
+      .mini-widget .mw-bar { display: flex; gap: 10px; align-items: center; }
+      .mini-widget .mw-label { font: 12px monospace; color: #7fb6ff; }
+      .mini-widget .mw-btn { padding: 3px 10px; background: #22354f; font-size: 12px; }
+      .mini-widget .mw-btn:hover { background: #2d4365; }
+      .mini-widget .mw-log { margin: 6px 0 0; padding: 0 0 0 16px; font: 11px/1.6 monospace; color: #9aa4b2; }
+      .mini-widget .mw-entry { list-style: '» '; }
+      /* the map island — Leaflet CSS (imported in shell.tsx) does the heavy
+         lifting; these are the demo's own divIcon pin + place-picker styles */
+      #island-map { padding: 0; }
+      #island-map .leaflet-container { height: 420px; }
+      .mesh-map-pin { display: flex; align-items: center; gap: 4px; }
+      .mesh-map-pin-dot {
+        width: 10px; height: 10px; border-radius: 50%;
+        background: #e5484d; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5);
+      }
+      .mesh-map-pin-label {
+        font: 11px/1 monospace; color: #e6edf3; background: rgba(16,20,24,.85);
+        padding: 2px 5px; border-radius: 3px; white-space: nowrap;
+      }
+      .mesh-map-places { display: flex; gap: 4px; }
+      .mesh-map-place-btn {
+        padding: 3px 8px; font: 11px monospace; background: #22354f; color: #e6edf3;
+        border: 0; border-radius: 4px; cursor: pointer;
+      }
+      .mesh-map-place-btn:hover { background: #2d4365; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/shell.tsx"></script>
+  </body>
+</html>

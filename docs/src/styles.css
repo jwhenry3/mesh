@@ -156,3 +156,9 @@ figure.code pre.hljs {
 .playground-actions button:hover:not(:disabled) { border-color: var(--accent); }
 .playground-actions button:disabled { opacity: 0.5; cursor: default; }
 .playground-out { color: var(--muted); font-family: Consolas, monospace; font-size: 0.85rem; }
+.nav-sublink {
+  padding-left: 26px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.nav-sublink.active { color: var(--accent); }

@@ -3,9 +3,9 @@
 //   dist-pages/
 //     index.html                  landing page (pages-landing/)
 //     sdk/                        docs site
-//       react/ vue/ solid/ svelte/ angular/   demos embedded by docs iframes
+//       react/ vue/ … react-dom-worker/       demos embedded by docs iframes
 //     consumer/                   docs-consumer site
-//       react/ vue/ solid/ svelte/ angular/   demos embedded by consumer iframes
+//       react/ vue/ … react-dom-worker/       demos embedded by consumer iframes
 //     .nojekyll                   skip Jekyll processing
 //     404.html                    copy of the landing page (deep-link fallback)
 //
@@ -31,6 +31,8 @@ const demos = [
   ['solid', 'examples/solid/dist'],
   ['svelte', 'examples/svelte/dist'],
   ['angular', 'examples/angular/dist/incidents-angular/browser'],
+  // Multi-page build: index.html (framework-free shell) + react-shell.html.
+  ['react-dom-worker', 'examples/react-dom-worker/dist'],
 ];
 
 for (const dir of [docsSrc, consumerSrc]) {

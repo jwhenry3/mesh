@@ -15,6 +15,7 @@ const projects = [
   ['solid', 'examples/solid'],
   ['svelte', 'examples/svelte'],
   ['angular', 'examples/angular'],
+  ['react-dom-worker', 'examples/react-dom-worker'],
 ];
 
 if (!process.argv.includes('--no-build')) {

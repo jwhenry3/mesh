@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "types": ["vite/client", "node"],
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "paths": {
+      "@jwhenry123/mesh/sdk": ["../../src/sdk/index.ts"],
+      "@jwhenry123/mesh/sdk/*": ["../../src/sdk/*"],
+      "@jwhenry123/mesh-worker-dom": ["../../packages/worker-dom/src/index.ts"],
+      "@jwhenry123/mesh-worker-dom/worker": ["../../packages/worker-dom/src/worker/index.ts"],
+      "@jwhenry123/mesh-react-island": ["../../packages/react-island/src/index.tsx"]
+    }
+  },
+  "include": ["src", "test", "vite.config.ts"]
+}

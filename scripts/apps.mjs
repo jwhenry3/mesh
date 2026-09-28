@@ -11,4 +11,5 @@ export const apps = [
   ['angular', 'examples/angular', 4201],
   ['nextjs', 'examples/nextjs', 3001],
   ['nestjs', 'examples/nestjs', 3100],
+  ['react-dom-worker', 'examples/react-dom-worker', 5177],
 ];

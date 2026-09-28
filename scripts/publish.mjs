@@ -52,7 +52,14 @@ for (const { dir, pkg } of packages) {
 }
 
 // Dependency order — a package publishes after every internal dep it needs.
-const order = ['@jwhenry123/mesh', '@jwhenry123/mesh-node', '@jwhenry123/mesh-react'];
+const order = [
+  '@jwhenry123/mesh',
+  '@jwhenry123/mesh-node',
+  '@jwhenry123/mesh-react',
+  // react-island peers on worker-dom — publish the dep first.
+  '@jwhenry123/mesh-worker-dom',
+  '@jwhenry123/mesh-react-island',
+];
 const sorted = [...packages].sort(
   (a, b) => (order.indexOf(a.pkg.name) === -1 ? 99 : order.indexOf(a.pkg.name)) -
             (order.indexOf(b.pkg.name) === -1 ? 99 : order.indexOf(b.pkg.name)),

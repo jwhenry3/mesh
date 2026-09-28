@@ -47,13 +47,21 @@ const MIME = {
 
 http
   .createServer((req, res) => {
+    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    // credentialless for the worker-islands demo: its map island hot-loads
+    // no-cors OSM tile <img>s, which require-corp would block. Still grants
+    // crossOriginIsolated (Chromium) so the SAB doorbell works.
+    res.setHeader(
+      'Cross-Origin-Embedder-Policy',
+      // Segment match, not prefix — the docs mounts live at /sdk/<name>/ and
+      // /consumer/<name>/ inside iframes, so the path arrives nested.
+      pathname.split('/').includes('react-dom-worker') ? 'credentialless' : 'require-corp',
+    );
     res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
     res.setHeader('Content-Security-Policy', FRAME_ANCESTORS);
     res.setHeader('Cache-Control', 'no-store');
 
-    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     let file = normalize(join(root, pathname));
     if (!file.startsWith(root + sep) && file !== root) {
       res.writeHead(403).end('forbidden');

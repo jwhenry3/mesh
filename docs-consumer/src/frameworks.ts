@@ -45,6 +45,7 @@ export function App() {
     notes: [
       'counter.increment is typed from the worker\'s defineWorker methods — no task contract to declare.',
       'Pass a selector to useSharedValue to re-render only when a slice changes: useSharedValue(memory, \'metrics\', m => m.total, { equals: shallowEqual }).',
+      'Worker-hosted React trees (islands) live in the companion package @jwhenry123/mesh-react-island — see the Worker islands page under this section.',
     ],
   },
   {

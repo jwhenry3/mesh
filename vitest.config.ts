@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import { defineConfig, mergeConfig } from 'vite';
-import viteConfig from './vite.config.ts';
+import { defineConfig, mergeConfig } from 'vitest/config';
+import viteConfig from './vite.config';
 
 const r = (p: string) => fileURLToPath(new URL(`./${p}`, import.meta.url));
 
@@ -29,6 +29,9 @@ export default mergeConfig(
         { find: /^@jwhenry123\/mesh-nestjs\/(.*)$/, replacement: r('packages/nestjs/src') + '/$1' },
         { find: /^@jwhenry123\/mesh-incidents$/, replacement: r('packages/incidents/src/index.ts') },
         { find: /^@jwhenry123\/mesh-incidents\/(.*)$/, replacement: r('packages/incidents/src') + '/$1' },
+        { find: /^@jwhenry123\/mesh-worker-dom$/, replacement: r('packages/worker-dom/src/index.ts') },
+        { find: /^@jwhenry123\/mesh-worker-dom\/(.*)$/, replacement: r('packages/worker-dom/src') + '/$1' },
+        { find: /^@jwhenry123\/mesh-react-island$/, replacement: r('packages/react-island/src/index.tsx') },
         // The published exports map lacks ./incidents/*; tests reach worker
         // entries directly so worker-entry modules can be imported in-process.
         { find: /^@jwhenry123\/mesh\/incidents\/(.*)$/, replacement: r('packages/incidents/src') + '/$1' },

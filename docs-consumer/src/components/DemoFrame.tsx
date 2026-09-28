@@ -2,6 +2,8 @@ interface DemoFrameProps {
   id: string;
   port: number;
   name: string;
+  /** Non-index page within the app — e.g. '/react-shell.html'. */
+  path?: string;
 }
 
 /**
@@ -10,15 +12,17 @@ interface DemoFrameProps {
  * at ./<id>/ relative to the site root — works under any base path (serve:docs,
  * serve:all, GitHub Pages). Next.js is server-rendered and always runs on its own port.
  */
-export function DemoFrame({ id, port, name }: DemoFrameProps) {
+export function DemoFrame({ id, port, name, path = '' }: DemoFrameProps) {
   const base =
     import.meta.env.DEV || id === 'nextjs'
       ? `${window.location.protocol}//${window.location.hostname}:${port}`
       : `./${id}/`;
   // ?v=<build stamp> — index.html keeps a stable name, so a fresh stamp per
   // build forces browsers past aggressively cached documents.
-  const src = `${base}?v=${__BUILD_ID__}`;
-  const label = src.startsWith('./') ? `${id}/` : `${window.location.hostname}:${port}`;
+  const src = `${base}${path.replace(/^\//, '')}?v=${__BUILD_ID__}`;
+  const label = src.startsWith('./')
+    ? `${id}/${path.replace(/^\//, '')}`
+    : `${window.location.hostname}:${port}${path}`;
   return (
     <div className="demo-frame">
       <div className="demo-frame-bar">

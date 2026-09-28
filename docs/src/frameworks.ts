@@ -67,6 +67,7 @@ export const FRAMEWORKS: FrameworkDoc[] = [
     notes: [
       'The page query object is memoized (useMemo) so the effect only re-fires when the spec actually changes.',
       'runOnce() makes the init task StrictMode-safe — double mounts skip a second seed.',
+      'Worker-hosted React trees (islands) live in the companion package @jwhenry123/mesh-react-island — see the Worker islands page under this section.',
     ],
   },
   {
